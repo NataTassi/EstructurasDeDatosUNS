@@ -1,38 +1,31 @@
 package TDALista;
-
 import java.util.Iterator;
 
 public class SimplyLinkedList<E> implements PositionList<E> {
 	protected Node<E> head,tail;
 	protected int size;
 	
-	public SimplyLinkedList() {
-		head = tail = null;
-		size = 0;
-	}
+	public SimplyLinkedList(){ head = tail = null; size = 0; }
 	
 	@Override
-	public int size() {
-		return size;
-	}
+	public int size(){ return size;	}
 	
 	@Override
-	public boolean isEmpty() {
-		return size == 0;
-	}
+	public boolean isEmpty(){ return size == 0;	}
 	
 	@Override
 	public Position<E> first() throws EmptyListException{
-		if(size == 0) throw new EmptyListException("Empty list while getting first");
+		if(size == 0) throw new EmptyListException("List is empty");
 		return head;
 	}
 	@Override
 	public Position<E> last() throws EmptyListException{
-		if(size == 0) throw new EmptyListException("Empty list while getting last");
+		if(size == 0) throw new EmptyListException("List is empty");
 		return tail;
 	}
 	
 	private Node<E> checkPosition(Position<E> p) throws InvalidPositionException{
+		if(size == 0) throw new InvalidPositionException("List is empty");
 		if(p == null) throw new InvalidPositionException("Invalid position, it's null");
 		try {	
 			return (Node<E>) p;
@@ -44,11 +37,7 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	@Override
 	public Position<E> prev(Position<E> p) throws InvalidPositionException,BoundaryViolationException {
 		Node<E> n = checkPosition(p);
-		try {
-			if(n == first()) throw new BoundaryViolationException("There's no previous node");
-		} catch(EmptyListException e) {
-			throw new InvalidPositionException("Empty list while getting prev");
-		}
+		if(n == head) throw new BoundaryViolationException("There's no previous node");
 		Node<E> tmp = head;
 		while(tmp.getNext() != null && tmp.getNext() != n)
 			tmp = tmp.getNext();
@@ -57,12 +46,8 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	@Override
 	public Position<E> next(Position<E> p) throws InvalidPositionException,BoundaryViolationException {
 		Node<E> n = checkPosition(p);
-		try {
-			if(n == last()) throw new BoundaryViolationException("There's no next node");
-			return n.getNext();
-		} catch(EmptyListException e) {
-			throw new InvalidPositionException("Empty list while getting next");
-		}
+		if(n == tail) throw new BoundaryViolationException("There's no next node");
+		return n.getNext();
 	}	
 	
 	@Override
@@ -83,7 +68,6 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	
 	@Override
 	public void addBefore(Position<E> p, E e) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while adding before");
 		Node<E> n = checkPosition(p);
 		try {
 			if(n == head) addFirst(e);
@@ -98,7 +82,6 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	}
 	@Override
 	public void addAfter(Position<E> p, E e) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while adding after");
 		Node<E> n = checkPosition(p);
 		if(n == tail) addLast(e);
 		else {
@@ -109,7 +92,6 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	
 	@Override
 	public E remove(Position<E> p) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while removing");
 		Node<E> n = checkPosition(p);
 		if(size == 1) {
 			if(n == head) head = tail = null;
@@ -131,7 +113,6 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	
 	@Override
 	public E set(Position<E> p, E e) throws InvalidPositionException{
-        if(size == 0) throw new InvalidPositionException("Empty List while setting new value");
         Node<E> n = checkPosition(p);
         E tmp = n.element();
         n.setElem(e);
@@ -139,9 +120,8 @@ public class SimplyLinkedList<E> implements PositionList<E> {
 	}
 	
 	@Override
-    public Iterator<E> iterator(){
-        return new ElementIterator<E>(this);
-    }
+    public Iterator<E> iterator(){ return new ElementIterator<E>(this); }
+
 	@Override
     public Iterable<Position<E>> positions(){
     	PositionList<Position<E>> r = new SimplyLinkedList<Position<E>>();
@@ -153,6 +133,7 @@ public class SimplyLinkedList<E> implements PositionList<E> {
        return r;
     }
     
+	@Override
 	public String toString(){
 		String r = "[";
 		Iterator<E> it = iterator();

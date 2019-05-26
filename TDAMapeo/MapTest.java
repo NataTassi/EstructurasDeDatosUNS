@@ -1,4 +1,3 @@
-
 /**
  * Class: MapTest
  * @author María Luján Ganuza (mlg@cs.uns.edu.ar)
@@ -8,17 +7,11 @@
  */
 
 package TDAMapeo;
-
 import static org.junit.Assert.*;
-
 import java.util.Random;
-
-
 import java.util.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
 
 public class MapTest {
 
@@ -29,9 +22,7 @@ public class MapTest {
 	private Integer i1, i2, i3;
 
 	private Map<Integer, Integer> getMapeo() {
-
-		return new OpenHashMap<Integer, Integer>();
-
+		return new CloseHashMap<Integer, Integer>();
 	}
 
 	@Before
@@ -450,7 +441,5 @@ public class MapTest {
 			 }
 		 assertTrue("entradas() no recorre todas las claves del mapeo", entradas.isEmpty());	
 	
-	}	
-	
-	
+	}		
 }

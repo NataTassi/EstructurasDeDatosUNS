@@ -1,11 +1,20 @@
 package TDALista;
-
 import java.util.Iterator;
 
+/**
+ * Class DoublyLinkedList.
+ * Implementa PositionList. 
+ * Representa una lista doblemente enlazada con centinelas.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class DoublyLinkedList<E> implements PositionList<E> {
 	protected DNode<E> header,trailer;
 	protected int size;
 	
+	/**
+	 * Instancia un objeto de tipo DoublyLinkedList, el nuevo objeto es una lista vacía.
+	 */
 	public DoublyLinkedList(){
 		header = new DNode<E>();
 		trailer = new DNode<E>();
@@ -17,27 +26,32 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 	}
 	
 	@Override
-	public int size(){
-		return size;
-	}
+	public int size(){ return size;	}
 	
 	@Override
-	public boolean isEmpty(){
-		return size == 0;
-	}
+	public boolean isEmpty(){ return size == 0; }
 	
 	@Override
 	public Position<E> first() throws EmptyListException{
-		if(size == 0) throw new EmptyListException("Empty list getting first");
+		if(size == 0) throw new EmptyListException("List is empty");
 		return header.getNext();
 	}
 	@Override
 	public Position<E> last() throws EmptyListException{
-		if(size == 0) throw new EmptyListException("Empty list getting last");
+		if(size == 0) throw new EmptyListException("List is empty");
 		return trailer.getPrev();
 	}
 	
+	/**
+	 * Revisa si la posición pasada por parámetro es válida, es decir, si no es nula
+	 * y es una instancia de DNode. También chequea si la lista está vacía. Luego, 
+	 * devuelve el nodo correspondiente a la posición pasada por parámetro.
+	 * @param p Posición a revisar.
+	 * @return Nodo de la posición.
+	 * @throws InvalidPositionException si la posición es nula o no es instancia de DNodo, o si la lista está vacía.
+	 */
 	private DNode<E> checkPosition(Position<E> p) throws InvalidPositionException{
+		if(size == 0) throw new InvalidPositionException("List is empty");
 		if(p == null) throw new InvalidPositionException("Invalid position, it's null");
 		try{
 			return (DNode<E>) p;	
@@ -53,7 +67,7 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 			if(n == first()) throw new BoundaryViolationException("There's no previous node");
 			return n.getPrev();
 		} catch(EmptyListException e){
-			throw new InvalidPositionException("Empty list while getting prev");
+			throw new InvalidPositionException("List is empty");
 		}
 	}
 	@Override
@@ -63,7 +77,7 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 			if(n == last()) throw new BoundaryViolationException("There's no next node");
 			return n.getNext();
 		} catch(EmptyListException e){
-			throw new InvalidPositionException("Empty list while getting next");
+			throw new InvalidPositionException("List is empty");
 		}
 	}
 	
@@ -72,7 +86,6 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 		DNode<E> n = new DNode<E>(e,header,header.getNext());
 		header.getNext().setPrev(n);
 		header.setNext(n);
-		
 		size++;
 	}
 	@Override
@@ -85,26 +98,23 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 	
 	@Override
 	public void addBefore(Position<E> p, E e) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while adding before");
-		DNode<E> pos = checkPosition(p);
-		DNode<E> newNode = new DNode<E>(e,pos.getPrev(),pos);
-		pos.getPrev().setNext(newNode);
-		pos.setPrev(newNode);
+		DNode<E> n = checkPosition(p);
+		DNode<E> newNode = new DNode<E>(e,n.getPrev(),n);
+		n.getPrev().setNext(newNode);
+		n.setPrev(newNode);
 		size++;
 	}
 	@Override
 	public void addAfter(Position<E> p, E e) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while adding after");
-		DNode<E> pos = checkPosition(p);
-		DNode<E> newNode = new DNode<E>(e,pos,pos.getNext());		
-		pos.getNext().setPrev(newNode);
-		pos.setNext(newNode);
+		DNode<E> n = checkPosition(p);
+		DNode<E> newNode = new DNode<E>(e,n,n.getNext());		
+		n.getNext().setPrev(newNode);
+		n.setNext(newNode);
 		size++;
 	}
 	
 	@Override
 	public E remove(Position<E> p) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while removing");
 		DNode<E> n = checkPosition(p);
 		DNode<E> prev = n.getPrev(), next = n.getNext();
 		prev.setNext(next);
@@ -115,7 +125,6 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 	
 	@Override
 	public E set(Position<E> p, E e) throws InvalidPositionException{
-		if(size == 0) throw new InvalidPositionException("Empty list while setting new value");
 		DNode<E> n = checkPosition(p);
 		E res = n.element();
 		n.setElem(e);
@@ -137,6 +146,7 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 		return res;
 	}
 	
+	@Override
 	public String toString(){
 		String r = "[";
 		Iterator<E> it = iterator();

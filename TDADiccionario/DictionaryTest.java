@@ -1,33 +1,24 @@
 package TDADiccionario;
-
 import static org.junit.Assert.*;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
-
 import org.junit.Test;
 import org.junit.Before;
-
-
 
 public class DictionaryTest {
 
 	private Dictionary<Integer, Integer> s; // interface
 
 	private Dictionary<Integer, Integer> getDictionary() {
-
-		return new ListDictionary<Integer, Integer>();
-
+		return new OpenHashDictionary<Integer, Integer>();
 	}
 
 	@Before
 	public void setUp() {
-
 		s = getDictionary();
-
 	}
 	
 	/* TESTEANDO EL METODO SIZE() */
@@ -479,14 +470,10 @@ public class DictionaryTest {
 
 		//Testeando entries con 1000 elementos	
 
-		for (Entry<Integer, Integer> entrada: s.entries())
-				{    esta=buscoEnVectorYEliminar(entrada.getKey(), entrada.getValue(),V);
-					 assertTrue("El método entries() no funciona correctamente", esta);
-		 	     }
-			assertTrue("El método entries() no funciona correctamente",((V.get(0).size()==0)&&(V.get(1).size()==0)));
-			
-	    		
-	}
-	
-	
+		for (Entry<Integer, Integer> entrada: s.entries()){   
+            esta=buscoEnVectorYEliminar(entrada.getKey(), entrada.getValue(),V);
+			assertTrue("El método entries() no funciona correctamente", esta);
+		}
+		assertTrue("El método entries() no funciona correctamente",((V.get(0).size()==0)&&(V.get(1).size()==0)));   		
+	}	
 }

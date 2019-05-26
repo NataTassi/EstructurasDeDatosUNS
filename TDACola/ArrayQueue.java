@@ -1,17 +1,23 @@
 package TDACola;
 
+/**
+ * Class ArrayQueue.
+ * Implementa Queue. 
+ * Representa una cola circular con arreglo de crecimiento dinámico.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class ArrayQueue<E> implements Queue<E> {
 	protected int f,r,n;
 	protected E[] data;
 	
-	public ArrayQueue(int max){
-		n = max;
-		f = r = 0;
+	/**
+	 * Instancia un objecto de tipo ArrayQueue, el nuevo objeto es una cola vacía.
+	 */
+	public ArrayQueue(){
+		n = 2; f = r = 0;
 		data = (E[]) new Object[n];
 	}
-    public ArrayQueue(){
-        this(2);
-    }
 	
 	@Override
 	public void enqueue(E elem){
@@ -28,7 +34,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	@Override
 	public E dequeue() throws EmptyQueueException{
-		if(isEmpty()) throw new EmptyQueueException("Empty queue while dequeuing");
+		if(isEmpty()) throw new EmptyQueueException("Queue is empty");
 		E tmp = data[f];
 		data[f] = null;
 		f = (f+1) % n;
@@ -44,17 +50,13 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	@Override
 	public E front() throws EmptyQueueException{
-		if(isEmpty()) throw new EmptyQueueException("Empty queue while getting front");
+		if(isEmpty()) throw new EmptyQueueException("Queue is empty");
 		return data[f];
 	}
 	
 	@Override
-	public boolean isEmpty(){ 
-        return f == r;
-    }
+	public boolean isEmpty(){ return f == r; }
 	
 	@Override
-	public int size(){ 
-        return (r-f+n) % n;	
-    }
+	public int size(){ return (r-f+n) % n; }
 }

@@ -1,13 +1,11 @@
-
 package TDAMapeo;
 import java.util.Scanner;
-
 import TDACola.*;
 
 public class MyMapTester {
 	public static void characterFrequency(Queue<Character> q){
 		int total = q.size();
-		Map<Character,Integer> m = new ListMap<Character,Integer>();
+		Map<Character,Integer> m = new OpenHashMap<Character,Integer>();
 		try {
 			while(!q.isEmpty()){
 				char x = q.dequeue();

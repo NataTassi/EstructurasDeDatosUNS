@@ -69,5 +69,4 @@ public class ListMap<K,V> implements Map<K,V> {
 		for(MEntry<K,V> e : m) l.addLast(e);
 		return l;
 	}
-
 }

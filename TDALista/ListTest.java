@@ -1,10 +1,7 @@
 package TDALista;
-
 import static org.junit.Assert.*;
 import java.util.*;
-
 import java.util.Iterator;
-
 import org.junit.*;
 
 public class ListTest {
@@ -16,7 +13,7 @@ public class ListTest {
 	 */
 
 	private PositionList<String> getList() {
-		return new SimplyLinkedList<String>();
+		return new DoublyLinkedList<String>();
 	}
 
 	@Before

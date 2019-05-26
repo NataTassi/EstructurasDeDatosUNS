@@ -43,5 +43,4 @@ public class MyStackTester {
 		print(s);
 		in.close();
 	}
-
 }

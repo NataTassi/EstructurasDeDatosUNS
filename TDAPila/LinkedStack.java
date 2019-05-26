@@ -4,24 +4,17 @@ public class LinkedStack<E> implements Stack<E>{
 	protected Node<E> head;
 	protected int size;
 	
-	public LinkedStack(){
-		head = null;
-		size = 0;
-	}
+	public LinkedStack(){ head = null; size = 0; }
 	
 	@Override
-	public int size(){
-		return size;
-	}
+	public int size(){ return size; }
 	
 	@Override
-	public boolean isEmpty(){
-		return size == 0;
-	}
+	public boolean isEmpty(){ return size == 0; }
 	
 	@Override
 	public E top() throws EmptyStackException{
-		if(size == 0) throw new EmptyStackException("Empty stack while getting top");
+		if(size == 0) throw new EmptyStackException("Stack is empty");
 		return head.getElem();
 	}
 	
@@ -33,7 +26,7 @@ public class LinkedStack<E> implements Stack<E>{
 	
 	@Override
 	public E pop() throws EmptyStackException{
-		if(size == 0) throw new EmptyStackException("Empty stack while popping");
+		if(size == 0) throw new EmptyStackException("Stack is empty");
 		E tmp = head.getElem();
 		head = head.getNext();
 		size--;

@@ -2,19 +2,22 @@ package TDAMapeo;
 import TDALista.*;
 
 public class OpenHashMap<K,V> implements Map<K,V> {
-	protected static final double loadfactor = 0.9;
+	protected static double loadfactor = 0.9;
 	protected PositionList<MEntry<K,V>>[] buckets;
 	protected int size,cap;
 	
-	public OpenHashMap(){ this(13); }
 	public OpenHashMap(int x){
 		cap = nextPrime(x); size = 0;
 		buckets = (PositionList<MEntry<K,V>>[]) new DoublyLinkedList[cap];
 		for(int i = 0; i < cap; i++)
 			buckets[i] = new DoublyLinkedList<MEntry<K,V>>();
 	}
+	public OpenHashMap(){ this(13); }
+	
+	public void setLoadFactor(double l){ loadfactor = l; }
 	
 	private int nextPrime(int x){
+		if(x < 2) return 2;
 		for(int i = 2; i*i <= x; i++)
 			if(x % i == 0) return nextPrime(x+1);
 		return x;
@@ -39,8 +42,8 @@ public class OpenHashMap<K,V> implements Map<K,V> {
 	private void increaseTable() {
 		int newCap = nextPrime(2*cap);
 		PositionList<MEntry<K,V>>[] newBuckets = (PositionList<MEntry<K,V>>[]) new DoublyLinkedList[newCap];
-		for(int i = 0; i < newCap; i++)
-			newBuckets[i] = new DoublyLinkedList<MEntry<K,V>>();
+		for(int i = 0; i < newCap; i++) newBuckets[i] = new DoublyLinkedList<MEntry<K,V>>();
+		
 		for(int i = 0; i < cap; i++){
 			for(MEntry<K,V> e : buckets[i]){
 				int loc = h(e.getKey()) % newCap;
@@ -61,7 +64,7 @@ public class OpenHashMap<K,V> implements Map<K,V> {
 			}
 		}
 		size++;
-		if((double)size/cap > loadfactor) increaseTable();
+		if((double)size/cap >= loadfactor) increaseTable();
 		buckets[h(k) % cap].addLast(new MEntry<K,V>(k,v)); 
 		return null;
 	}
@@ -107,8 +110,7 @@ public class OpenHashMap<K,V> implements Map<K,V> {
 	public Iterable<Entry<K, V>> entries() {
 		PositionList<Entry<K,V>> l = new DoublyLinkedList<Entry<K,V>>();
 		for(int i = 0; i < cap; i++) 
-			for(MEntry<K,V> e : buckets[i]) 
-				l.addLast(e);
+			for(MEntry<K,V> e : buckets[i]) l.addLast(e);
 		return l;
 	}
 }

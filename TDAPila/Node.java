@@ -1,8 +1,8 @@
 package TDAPila;
 
 public class Node<E>{
-	private E elem;
-	private Node<E> next;
+	protected E elem;
+	protected Node<E> next;
 	
 	public Node(E e, Node<E> n){ elem = e; next = n; }
 	

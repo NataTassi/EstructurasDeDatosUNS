@@ -4,10 +4,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	protected Node<E> head,tail;
 	protected int size;
 	
-	public LinkedQueue(){
-		head = tail = null;
-		size = 0;
-	}
+	public LinkedQueue(){ head = tail = null; size = 0; }
 	
 	@Override
 	public void enqueue(E e){
@@ -20,7 +17,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	
 	@Override
 	public E dequeue() throws EmptyQueueException{
-		if(size == 0) throw new EmptyQueueException("Empty queue while dequeuing");
+		if(size == 0) throw new EmptyQueueException("Queue is empty");
 		E tmp = head.getElem();
 		head = head.getNext();
 		size--;
@@ -30,17 +27,13 @@ public class LinkedQueue<E> implements Queue<E> {
 	
 	@Override
 	public E front() throws EmptyQueueException{
-		if(size == 0) throw new EmptyQueueException("Empty queue");
+		if(size == 0) throw new EmptyQueueException("Queue is empty");
 		return head.getElem();
 	}
 	
 	@Override
-	public boolean isEmpty(){
-        return size == 0;
-    }
+	public boolean isEmpty(){ return size == 0; }
 	
 	@Override
-	public int size(){ 
-        return size;
-    }
+	public int size(){ return size; }
 }
