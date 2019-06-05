@@ -1,9 +1,19 @@
 package TDAPila;
 import TDALista.*;
 
+/**
+ * Class ListStack.
+ * Implementa Stack.
+ * Representa una pila con una lista.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class ListStack<E> implements Stack<E> {
 	protected PositionList<E> list;
 	
+	/**
+	 * Crea una pila vacía.
+	 */
 	public ListStack(){ list = new SimplyLinkedList<E>(); }
 	
 	@Override

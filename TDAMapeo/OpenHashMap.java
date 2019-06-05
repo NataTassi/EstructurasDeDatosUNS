@@ -1,21 +1,45 @@
 package TDAMapeo;
 import TDALista.*;
 
+/**
+ * Class OpenHashMap.
+ * Implementa Map.
+ * Representa un mapeo para almacenar pares clave-valor con una tabla hash abierta.
+ * 
+ * @param <K> Tipo de las claves de las entradas del mapeo.
+ * @param <V> Tipo de los valores de las entradas del mapeo.
+ */
 public class OpenHashMap<K,V> implements Map<K,V> {
 	protected static double loadfactor = 0.9;
 	protected PositionList<MEntry<K,V>>[] buckets;
 	protected int size,cap;
 	
+	/**
+	 * Crea un mapeo con una tabla de cubetas de tamaño adecuado para la cantidad mínima de entradas esperadas.
+	 * @param x Cantidad de entradas que se espera introducir.
+	 */
 	public OpenHashMap(int x){
 		cap = nextPrime(x); size = 0;
 		buckets = (PositionList<MEntry<K,V>>[]) new DoublyLinkedList[cap];
 		for(int i = 0; i < cap; i++)
 			buckets[i] = new DoublyLinkedList<MEntry<K,V>>();
 	}
+	/**
+	 * Crea un mapeo sin conococimiento de la cantidad de entradas a introducirse.
+	 */
 	public OpenHashMap(){ this(13); }
 	
+	/**
+	 * Establece el factor de carga de la tabla de cubetas del mapeo.
+	 * @param l Nuevo factor de carga.
+	 */
 	public void setLoadFactor(double l){ loadfactor = l; }
 	
+	/**
+	 * Retorna el siguiente primo mayor o igual al número dado.
+	 * @param x Un número entero positivo.
+	 * @return Siguiente primo mayor o igual al número dado.
+	 */
 	private int nextPrime(int x){
 		if(x < 2) return 2;
 		for(int i = 2; i*i <= x; i++)
@@ -23,6 +47,11 @@ public class OpenHashMap<K,V> implements Map<K,V> {
 		return x;
 	}
 	
+	/**
+	 * Devuelve un código hash para la clave pasada como parámetro de tipo entero positivo.
+	 * @param k Clave.
+	 * @return Código hash.
+	 */
 	private int h(K k){ return Math.abs(k.hashCode()); }
 	
 	@Override
@@ -39,6 +68,9 @@ public class OpenHashMap<K,V> implements Map<K,V> {
  		return null;
 	}
 	
+	/**
+	 * Incrementa el tamaño de la tabla de cubetas al doble del siguiente primo de la capacidad actual.
+	 */
 	private void increaseTable() {
 		int newCap = nextPrime(2*cap);
 		PositionList<MEntry<K,V>>[] newBuckets = (PositionList<MEntry<K,V>>[]) new DoublyLinkedList[newCap];

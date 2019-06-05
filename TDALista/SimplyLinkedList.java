@@ -1,10 +1,20 @@
 package TDALista;
 import java.util.Iterator;
 
+/**
+ * Class SimplyLinkedList.
+ * Implementa PositionList. 
+ * Representa una lista simplemente enlazada.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class SimplyLinkedList<E> implements PositionList<E> {
 	protected Node<E> head,tail;
 	protected int size;
 	
+	/**
+	 * Crea una lista vacía.
+	 */
 	public SimplyLinkedList(){ head = tail = null; size = 0; }
 	
 	@Override

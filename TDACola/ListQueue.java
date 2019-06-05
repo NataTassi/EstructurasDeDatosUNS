@@ -1,9 +1,19 @@
 package TDACola;
 import TDALista.*;
 
+/**
+ * Class ListQueue.
+ * Implementa Queue. 
+ * Representa una cola con una lista.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class ListQueue<E> implements Queue<E> {
 	protected PositionList<E> list;
 	
+	/**
+	 * Crea una cola vacía.
+	 */
 	public ListQueue(){ list = new SimplyLinkedList<E>(); }
 	
 	@Override

@@ -1,7 +1,10 @@
 package TDALista;
+
 import static org.junit.Assert.*;
 import java.util.*;
+
 import java.util.Iterator;
+
 import org.junit.*;
 
 public class ListTest {

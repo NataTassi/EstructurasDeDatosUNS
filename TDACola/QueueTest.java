@@ -1,6 +1,10 @@
 package TDACola;
+
 import static org.junit.Assert.*;
+
+
 import org.junit.*;
+
 
 public class QueueTest {
 	private Queue<String> c; //interface
@@ -11,16 +15,21 @@ public class QueueTest {
 	 *
 	 */
 
-	private Queue<String> getQueue() {
-	    return new ArrayQueue<String>();
-	}
+	private Queue<String> getQueue()
+	{
+	  return new ArrayQueue<String>();
+	 }
 	
-	@Before public void setUp(){
+	@Before public void setUp()
+	{
 		c  = getQueue();
 		n1 = "Uno";
 		n2 = "Dos";
 		n3 = "Tres";
+		
+				
 	}
+	
 	
 	/*_______________________TESTEAMOS EL METODO size()_____________________________*/
 	
@@ -86,35 +95,37 @@ public class QueueTest {
 		}
 	  
 /*_______________________TESTEAMOS EL METODO enqueue() y dequeue()_____________________________*/
-	@Test public void enqueueDequeue() {
-	    c.enqueue(n1);
-	    c.enqueue(n2);
-	    c.enqueue(n3);
-	    try{
-	        assertSame("Eliminamos el elemento al frente de la cola", n1,c.dequeue());
-	        assertSame("Eliminamos el elemento al frente de la cola",n2,c.dequeue());
-	        assertSame("Eliminamos el elemento al frente de la cola", n3,c.dequeue());
-	        assertTrue("luego de insertar 3 elementos y seguidamente eliminar 3 elementos, tamaño != 0", c.size() == 0);
-	    }catch (EmptyQueueException e) {fail("Al eliminar elementos de una cola que no está vacía lanza la excepción EmptyQueueException"); }
-        
-	    try {
-	        c.dequeue();
-	        fail("Al intentar eliminar elementos de una cola vacía (de Strings) no lanza la excepción EmptyQueueException");
-	    } catch (EmptyQueueException e){}
-	
-	        
-	    for (int i=0; i<1000; i++)
-	        {c.enqueue(String.valueOf(i));}
-	    
-	    
-	    try{  
-	    for (int i=999; i>=0; i--)
-	        assertEquals("al eliminar "+i,String.valueOf(999-i),c.dequeue());
-	    }catch (EmptyQueueException e){ fail("Al eliminar elementos de una cola que no está vacía lanza la excepción EmptyQueueException");}
-	    assertTrue("luego de insertar 1000 elementos y eliminar 1000 elementos, tamaño != 0", c.size() == 0);
-        try {
-            c.dequeue();
-	        fail("al intentar eliminar un elemento de una cola vacia no lanza la excepción EmptyQueueException");
-	    } catch (EmptyQueueException e){}
-    }     
+	  @Test public void enqueueDequeue()
+  {
+	  c.enqueue(n1);
+	  c.enqueue(n2);
+	  c.enqueue(n3);
+	  try{
+		  assertSame("Eliminamos el elemento al frente de la cola", n1,c.dequeue());
+		  assertSame("Eliminamos el elemento al frente de la cola",n2,c.dequeue());
+		  assertSame("Eliminamos el elemento al frente de la cola", n3,c.dequeue());
+		  assertTrue("luego de insertar 3 elementos y seguidamente eliminar 3 elementos, tamaño != 0", c.size() == 0);
+	  }catch (EmptyQueueException e) {fail("Al eliminar elementos de una cola que no está vacía lanza la excepción EmptyQueueException"); }
+      
+	  try {
+		  c.dequeue();
+		  fail("Al intentar eliminar elementos de una cola vacía (de Strings) no lanza la excepción EmptyQueueException");
+	  } catch (EmptyQueueException e){}
+	 
+		  
+	  for (int i=0; i<1000; i++)
+		  {c.enqueue(String.valueOf(i));}
+	  
+	  
+	  try{  
+	  for (int i=999; i>=0; i--)
+		  assertEquals("al eliminar "+i,String.valueOf(999-i),c.dequeue());
+	  }catch (EmptyQueueException e){ fail("Al eliminar elementos de una cola que no está vacía lanza la excepción EmptyQueueException");}
+	  assertTrue("luego de insertar 1000 elementos y eliminar 1000 elementos, tamaño != 0", c.size() == 0);
+      try {
+    	  c.dequeue();
+	      fail("al intentar eliminar un elemento de una cola vacia no lanza la excepción EmptyQueueException");
+	  } catch (EmptyQueueException e){}
+}
+ 
 }

@@ -1,20 +1,49 @@
 package TDACola;
 
+/**
+ * Class Node.
+ * Representa un nodo de LinkedQueue.
+ *
+ * @param <E> Tipo de los elementos almacenados por la cola.
+ */
 public class Node<E>{
-	private E elem;
-	private Node<E> next;
+	protected E elem;
+	protected Node<E> next;
 	
+	/**
+	 * Crea un nodo con el elemento y el nodo siguiente dados.
+	 * @param e Elemento del nodo.
+	 * @param n Nodo siguiente.
+	 */
 	public Node(E e, Node<E> n){ elem = e; next = n; }
 	
-    public Node(){ this(null,null);	}
+	/**
+	 * Crea un nodo con el elemento dado.
+	 * @param e Elemento del nodo.
+	 */
+    public Node(E e){ this(e,null); }
 	
-    public Node(E e){ this(e,null);	}
-	
-	public void setElem(E e){ elem = e;	}
+	/**
+	 * Establece el elemento del nodo.
+	 * @param e Elemento del nodo.
+	 */
+	public void setElem(E e){ elem = e; }
 
-	public void setNext(Node<E> n){	next = n; }
+	/**
+	 * Establece el nodo siguiente.
+	 * @param n Nodo a establecer como siguiente.
+	 */
+	public void setNext(Node<E> n){ next = n; }
 	
-	public E getElem(){	return elem; }
+	/**
+	 * Retorna el elemento del nodo.
+	 * @return Elemento del nodo.
+	 */
+	public E element(){ return elem; }
 
+	/**
+	 * Retorna el nodo siguiente o null si este no existe.
+	 * @return Nodo siguiente.
+	 */
 	public Node<E> getNext(){ return next; }
 }

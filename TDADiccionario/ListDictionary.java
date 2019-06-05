@@ -1,9 +1,20 @@
 package TDADiccionario;
 import TDALista.*;
 
+/**
+ * Class ListDictionary.
+ * Implementa Dictionary.
+ * Representa un diccionario para almacenar pares clave-valor con una lista.
+ * 
+ * @param <K> Tipo de las claves de las entradas del diccionario.
+ * @param <V> Tipo de los valores de las entradas del diccionario.
+ */
 public class ListDictionary<K,V> implements Dictionary<K,V> {
 	protected DoublyLinkedList<Entry<K,V>> m;
 	
+	/**
+	 * Crea un diccionario vacío.
+	 */
 	public ListDictionary(){ m = new DoublyLinkedList<Entry<K,V>>(); }
 	
 	@Override

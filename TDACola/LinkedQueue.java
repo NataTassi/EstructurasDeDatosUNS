@@ -1,9 +1,19 @@
 package TDACola;
 
+/**
+ * Class LinkedQueue.
+ * Implementa Queue. 
+ * Representa una cola con nodos enlazados.
+ *
+ * @param <E> Tipo de los elementos almacenados.
+ */
 public class LinkedQueue<E> implements Queue<E> {
 	protected Node<E> head,tail;
 	protected int size;
 	
+	/**
+	 * Crea una cola vacía.
+	 */
 	public LinkedQueue(){ head = tail = null; size = 0; }
 	
 	@Override
@@ -18,7 +28,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	@Override
 	public E dequeue() throws EmptyQueueException{
 		if(size == 0) throw new EmptyQueueException("Queue is empty");
-		E tmp = head.getElem();
+		E tmp = head.element();
 		head = head.getNext();
 		size--;
 		if(size == 0) tail = null;
@@ -28,7 +38,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	@Override
 	public E front() throws EmptyQueueException{
 		if(size == 0) throw new EmptyQueueException("Queue is empty");
-		return head.getElem();
+		return head.element();
 	}
 	
 	@Override

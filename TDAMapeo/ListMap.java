@@ -1,9 +1,20 @@
 package TDAMapeo;
 import TDALista.*;
 
+/**
+ * Class ListMap.
+ * Implementa Map.
+ * Representa un mapeo para almacenar pares clave-valor con una lista.
+ * 
+ * @param <K> Tipo de las claves de las entradas del mapeo.
+ * @param <V> Tipo de los valores de las entradas del mapeo.
+ */
 public class ListMap<K,V> implements Map<K,V> {
 	protected PositionList<MEntry<K,V>> m;
 
+	/**
+	 * Crea un mapeo vacío.
+	 */
 	public ListMap(){ m = new DoublyLinkedList<MEntry<K,V>>(); }
 	
 	@Override
