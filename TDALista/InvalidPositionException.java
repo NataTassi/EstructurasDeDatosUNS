@@ -2,14 +2,11 @@ package TDALista;
 
 /**
  * Class InvalidPositionException.
- * Extiende Exception.
+ * Modela la excepción ante una posición pasada inválida.
  */
 public class InvalidPositionException extends Exception{
     /**
-	 * Instancia un objeto de tipo InvalidPositionException.
 	 * @param msg Mensaje que describe el evento que disparó la excepción.
 	 */
-    public InvalidPositionException(String msg){
-        super(msg);
-    }
+    public InvalidPositionException(String msg){ super(msg); }
 }

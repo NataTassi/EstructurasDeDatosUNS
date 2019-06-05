@@ -14,7 +14,7 @@ public class LinkedTree<E> implements Tree<E> {
 	protected int size;
 	
 	/**
-	 * Instancia un objeto de tipo LinkedTree, el nuevo objeto es un árbol vacío.
+	 * Crea un árbol vacío.
 	 */
 	public LinkedTree(){ size = 0; root = null; }
 
@@ -30,7 +30,7 @@ public class LinkedTree<E> implements Tree<E> {
 	 * devuelve el nodo correspondiente a la posición pasada por parámetro.
 	 * @param p Posición a revisar.
 	 * @return Nodo de la posición.
-	 * @throws InvalidPositionException si la posición es nula o no es instancia de TNodo, o si el árbol está vacío.
+	 * @throws InvalidPositionException si la posición es nula, no es instancia de TNodo, o si el árbol está vacío.
 	 */
 	private TNode<E> checkPosition(Position<E> p) throws InvalidPositionException {
 		if(size == 0) throw new InvalidPositionException("Tree is empty");
@@ -166,20 +166,34 @@ public class LinkedTree<E> implements Tree<E> {
 		}
 		throw new InvalidPositionException("p is not parent of lb");
 	}
-
+	
+	/**
+	 * Invalida el nodo dado estableciendo todas sus referencias a nulo.
+	 * @param n Nodo.
+	 */
+	void invalidateNode(TNode<E> n){
+		if(n != null){
+			n.setElement(null);
+			n.setParent(null);
+			n.setChildren(null);
+		}
+	}
+	
 	@Override
 	public void removeExternalNode(Position<E> p) throws InvalidPositionException {
 		if(isInternal(p)) throw new InvalidPositionException("Position isn't an external node");
 		TNode<E> n = checkPosition(p);
 		if(n == root){
-			root = null; size--;
+			invalidateNode(root);
+			root = null; 
+			size--;
 			return;
 		}
 		TNode<E> parent = n.getParent();
 		for(TDALista.Position<TNode<E>> x : parent.getChildren().positions()){
 			if(x.element() == n){
 				try {
-					parent.getChildren().remove(x);
+					invalidateNode(parent.getChildren().remove(x));
 					size--;
 					return;
 				} catch (TDALista.InvalidPositionException exc) {
@@ -199,7 +213,9 @@ public class LinkedTree<E> implements Tree<E> {
 				throw new InvalidPositionException("Root can't be removed when it has more than one child"); 
 			else {
 				try {
-					root = n.getChildren().first().element();
+					TNode<E> newRoot = n.getChildren().first().element();
+					invalidateNode(root);
+					root = newRoot;
 					root.setParent(null);
 					size--;
 					return;
@@ -219,7 +235,7 @@ public class LinkedTree<E> implements Tree<E> {
 						children.addAfter(prev,y);
 						prev = children.next(prev);
 					}
-					children.remove(x);
+					invalidateNode(children.remove(x));
 					size--;
 					return;
 				} catch (TDALista.InvalidPositionException | TDALista.BoundaryViolationException exc) {

@@ -16,8 +16,8 @@ public class CloseHashMap<K,V> implements Map<K,V> {
 	protected int size,cap;
 	
 	/**
-	 * Instancia un objeto de tipo CloseHashMap.
-	 * @param x Cantidad de entradas mínimas a introducirse.
+	 * Crea un mapeo con una tabla de cubetas de tamaño adecuado para la cantidad mínima de entradas esperadas.
+	 * @param x Cantidad de entradas que se espera introducir.
 	 */
 	public CloseHashMap(int x) {
 		cap = nextPrime(x); size = 0; free = new MEntry<K,V>();
@@ -25,7 +25,7 @@ public class CloseHashMap<K,V> implements Map<K,V> {
 		for(int i = 0; i < cap; i++) buckets[i] = null;
 	}
 	/**
-	 * Instancia un objeto de tipo CloseHashMap.
+	 * Crea un mapeo sin conococimiento de la cantidad de entradas a introducirse.
 	 */
 	public CloseHashMap(){ this(13); }
 	

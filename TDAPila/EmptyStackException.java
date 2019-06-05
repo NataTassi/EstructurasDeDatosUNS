@@ -2,14 +2,11 @@ package TDAPila;
 
 /**
  * Class EmptyStackException.
- * Extiende Exception.
+ * Modela la excepción ante una pila vacía.
  */
 public class EmptyStackException extends Exception{
     /**
-	 * Instancia un objeto de tipo EmptyStackException.
 	 * @param msg Mensaje que describe el evento que disparó la excepción.
 	 */
-    public EmptyStackException(String msg){
-    	super(msg);
-    }
+    public EmptyStackException(String msg){ super(msg); }
 }

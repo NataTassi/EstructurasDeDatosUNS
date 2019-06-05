@@ -6,7 +6,7 @@ import TDALista.*;
  * Implementa Position.
  * Representa un nodo de LinkedTree.
  *
- * @param <E> Tipo de los elementos almacenados por LinkedTree.
+ * @param <E> Tipo de los elementos almacenados.
  */
 public class TNode<E> implements Position<E> {
 	protected E elem;
@@ -14,7 +14,7 @@ public class TNode<E> implements Position<E> {
 	protected PositionList<TNode<E>> children;
 	
 	/**
-	 * Instancia un objeto de tipo TNode, establece el elemento del nodo y su padre, y crea una lista de vacía de hijos.
+	 * Crea un nodo con el elemento y nodo a establecer como padre dados, y crea una lista vacía de hijos.
 	 * @param e Elemento del nodo.
 	 * @param p Padre del nodo.
 	 */
@@ -23,7 +23,7 @@ public class TNode<E> implements Position<E> {
 		children = new DoublyLinkedList<TNode<E>>();
 	}
 	/**
-	 * Instancia un objeto de tipo TNode, establece el elemento del nodo, su padre a nulo y crea una lista de vacía de hijos.
+	 * Crea un nodo con elemento dado, su padre con referencia nula, y crea una lista vacía de hijos.
 	 * @param e Elemento del nodo.
 	 */
 	public TNode(E e){ this(e,null); }

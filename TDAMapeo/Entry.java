@@ -4,8 +4,8 @@ package TDAMapeo;
  * Interface Entry.
  * Representa una entrada en un mapeo con un par clave-valor. 
  * 
- * @param <K> Tipo de la clave.
- * @param <V> Tipo del valor.
+ * @param <K> Tipo de las claves de las entradas del mapeo.
+ * @param <V> Tipo del los valores de las entradas del mapeo. 
  */
 public interface Entry<K,V>{
 	/**

@@ -15,8 +15,8 @@ public class OpenHashDictionary<K,V> implements Dictionary<K,V> {
 	protected int size,cap;
 	
 	/**
-	 * Instancia un objeto de tipo OpenHashDictionary.
-	 * @param x Cantidad de entradas mínimas a introducirse.
+	 * Crea un diccionario con una tabla de cubetas de tamaño adecuado para la cantidad mínima de entradas esperadas.
+	 * @param x Cantidad de entradas que se espera introducir.
 	 */
 	public OpenHashDictionary(int x){
 		cap = nextPrime(x); size = 0;
@@ -25,7 +25,7 @@ public class OpenHashDictionary<K,V> implements Dictionary<K,V> {
 			buckets[i] = new DoublyLinkedList<DEntry<K,V>>();
 	}
 	/**
-	 * Instancia un objeto de tipo OpenHashDictionary.
+	 * Crea un diccionario sin conococimiento de la cantidad de entradas a introducirse.
 	 */
 	public OpenHashDictionary(){ this(13); }
 	

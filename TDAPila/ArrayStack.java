@@ -12,7 +12,7 @@ public class ArrayStack<E> implements Stack<E>{
 	protected E[] data;
 
 	/**
-	 * Instancia un objeto de tipo ArrayStack, el nuevo objeto es una pila vacía.
+	 * Crea una pila vacía.
 	 */
 	public ArrayStack(){
 		size = 0;

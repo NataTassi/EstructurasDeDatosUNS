@@ -2,14 +2,11 @@ package TDALista;
 
 /**
  * Class BoundaryViolationException.
- * Extiende Exception.
+ * Modela la excepción ante solicitud de acceso a una posición inexistente.
  */
 public class BoundaryViolationException extends Exception{
     /**
-	 * Instancia un objeto de tipo BoundaryViolationException.
 	 * @param msg Mensaje que describe el evento que disparó la excepción.
 	 */
-    public BoundaryViolationException(String msg){
-        super(msg);
-    }
+    public BoundaryViolationException(String msg){ super(msg); }
 }

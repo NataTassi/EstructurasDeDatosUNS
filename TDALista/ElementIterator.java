@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 /**
  * Class ElementIterator.
  * Implementa Iterator.
- * Iterador de DoublyLinkedList.
+ * Representa el iterador de una lista.
  *
  * @param <E> Tipo de los elementos de la lista.
  */
@@ -14,8 +14,8 @@ public class ElementIterator<E> implements Iterator<E>{
     protected Position<E> cursor;
     
     /** 
-     * Instancia un objeto de tipo ElementIterator. Iterador de la lista.
-     * @param l Lista a la que el iterador referencia.
+     * Crea una iterador para la lista dada.
+     * @param l Lista.
      */
     public ElementIterator(PositionList<E> l){
         list = l;

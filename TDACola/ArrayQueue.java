@@ -12,7 +12,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	protected E[] data;
 	
 	/**
-	 * Instancia un objecto de tipo ArrayQueue, el nuevo objeto es una cola vacía.
+	 * Crea una cola vacía.
 	 */
 	public ArrayQueue(){
 		n = 2; f = r = 0;

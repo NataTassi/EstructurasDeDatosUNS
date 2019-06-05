@@ -2,7 +2,7 @@ package TDADiccionario;
 
 /**
  * Class InvalidKeyException.
- * Extiende Exception.
+ * Modela la excepción ante una clave pasada inválida. 
  */
 public class InvalidKeyException extends Exception{
     /**

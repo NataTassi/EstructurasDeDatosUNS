@@ -5,14 +5,14 @@ package TDALista;
  * Implementa Position.
  * Representa un nodo de DoublyLinkedList.
  *
- * @param <E> Tipo de los elementos almacenados por DoublyLinkedList.
+ * @param <E> Tipo de los elementos almacenados por la lista.
  */
 public class DNode<E> implements Position<E>{
 	protected E elem;
 	protected DNode<E> prev,next;
 	
 	/** 
-	 * Instancia un objeto de tipo DNode, establece el elemento del nodo, el nodo previo y el siguiente.
+	 * Crea un nodo con el elemento, nodo previo y nodo siguiente dados.
 	 * @param e Elemento del nodo.
 	 * @param p Nodo previo.
 	 * @param n Nodo siguiente.
@@ -20,7 +20,7 @@ public class DNode<E> implements Position<E>{
 	public DNode(E e, DNode<E> p, DNode<E> n){ elem = e; prev = p;	next = n; }
 	
 	/**
-	 * Instancia un objeto de tipo DNode con todas sus referencias nulas.
+	 * Crea un nodo con todas sus referencias nulas.
 	 */
 	public DNode(){ this(null,null,null); }
 	

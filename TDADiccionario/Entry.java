@@ -4,8 +4,8 @@ package TDADiccionario;
  * Interface Entry.
  * Representa una entrada en un diccionario con un par clave-valor. 
  * 
- * @param <K> Tipo de la clave.
- * @param <V> Tipo del valor.
+ * @param <K> Tipo de las claves de las entradas del diccionario.
+ * @param <V> Tipo del los valores de las entradas del diccionario.
  */
 public interface Entry<K,V>{
 	/**

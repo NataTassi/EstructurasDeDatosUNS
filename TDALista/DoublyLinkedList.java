@@ -13,7 +13,7 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 	protected int size;
 	
 	/**
-	 * Instancia un objeto de tipo DoublyLinkedList, el nuevo objeto es una lista vacía.
+	 * Crea una lista vacía.
 	 */
 	public DoublyLinkedList(){
 		header = new DNode<E>();
@@ -48,7 +48,7 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 	 * devuelve el nodo correspondiente a la posición pasada por parámetro.
 	 * @param p Posición a revisar.
 	 * @return Nodo de la posición.
-	 * @throws InvalidPositionException si la posición es nula o no es instancia de DNodo, o si la lista está vacía.
+	 * @throws InvalidPositionException si la posición es nula, no es instancia de DNodo, o si la lista está vacía.
 	 */
 	private DNode<E> checkPosition(Position<E> p) throws InvalidPositionException{
 		if(size == 0) throw new InvalidPositionException("List is empty");
@@ -120,7 +120,11 @@ public class DoublyLinkedList<E> implements PositionList<E> {
 		prev.setNext(next);
 		next.setPrev(prev);
 		size--;
-		return n.element();
+		E tmp = n.element();
+		n.setPrev(null);
+		n.setNext(null);
+		n.setElem(null);
+		return tmp;
 	}
 	
 	@Override
